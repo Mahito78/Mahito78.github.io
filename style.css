@@ -129,7 +129,7 @@ left:0px;
 .mario{
     position: absolute;
     width: 71px;
-    height: 71px;
+    height: 72px;
     background: url('img/mario_walking3.png') left center;    
     top:-70px;
     left:0px;
@@ -146,11 +146,8 @@ left:0px;
 .mario:active{
     /* Fade out */
     /* Move over to the right */
-    background: url('img/mario_jumping.png') left center;    
-    transform: translateY(-30px);
 
-    animation: jumping 0.8s steps(3),
-            run 7s both infinite linear;
+    transform: translateY(-30px);
   }
 
 @-webkit-keyframes play{
@@ -158,10 +155,6 @@ left:0px;
 }
 @keyframes play{
 100%{background-position: -284px;}
-}
-
-@keyframes jumping{
-    100%{background-position: -213px;}
 }
 
 @keyframes jump{

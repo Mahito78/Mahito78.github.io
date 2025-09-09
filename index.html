@@ -1,199 +1,96 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Soutenqnce de thèse - Mehdi ABDELWAHED</title>
-    <style>
-        @font-face {
-            font-family: "TBF";
-            src: url("theboldfont.ttf");
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        #mehdi {
-            font-family: "TBF";
-            text-transform: uppercase;
-        }
-
-        /* Color adjustments */
-        .bg-primary {
-            background-color: #4bb3fd;
-            /* Turquoise */
-        }
-
-        .text-primary {
-            color: #4bb3fd;
-        }
-
-        .bg-secondary {
-            background-color: #50c878;
-            /* Emerald */
-        }
-
-        .text-secondary {
-            color: #50c878;
-        }
-
-        /* Fullscreen styles */
-        #streamContainer:fullscreen {
-            width: 100vw;
-            /* Full width */
-            height: calc(100vw * 9 / 16);
-            /* 16:9 aspect ratio */
-            top: 0;
-            left: 0;
-            position: fixed;
-            z-index: 9999;
-            /* Ensure it is on top */
-        }
-
-        #streamIframe {
-            width: 100%;
-            height: 100%;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
-</head>
-
-<body class="text-gray-800 bg-gray-50">
-    <!-- Split Image Hero Section -->
-    <section id="hero" class="bg-white">
-        <div class="relative isolate px-6 pt-14 lg:px-8">
-            <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-                aria-hidden="true">
-                <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#50c878] to-[#4bb3fd] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-                    style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
-                </div>
-            </div>
-            <div class="mx-auto max-w-2xl py-16">
-                <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-                    <div
-                        class="relative rounded-full px-3 py-1 text-sm/6 text-primary ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                        Jeudi 19 Décembre 2024 - 13h30 - Amphithéâtre E2 - CY Cergy Paris université, site de Saint-Martin
-                    </div>
-                </div>
-                <div class="text-center">
-                    <h1 id="mehdi" class="text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
-                        Mehdi ABDELWAHED</h1>
-                    <p class="mt-8 text-lg font-medium text-gray-500 sm:text-xl/8">Développement d’un capteur tactile type peau artificielle 
-                        appliqué à la voiture autonome utilisant l’influence du Multi fréquentielle 
-                        en Tomographie par Impédance Electrique ainsi que de l’IA pour le traitement des données.</p>
-                    <div class="mt-10 flex items-center justify-center gap-x-6">
-                        <a href="#" id="playOverlay"
-                            class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
-                            <svg class="inline w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg>
-                            Lancer le livestream
-                        </a>
-                        <a href="mehdi_abdelwahed_thesis.pdf" target="_blank"
-                            class="rounded-md bg-secondary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary">
-                            <svg class="inline w-4 h-4 mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24">
-                                <path
-                                    d="M6 2C4.89 2 4 2.89 4 4V20C4 21.11 4.89 22 6 22H18C19.11 22 20 21.11 20 20V8L14 2H6ZM13 9V3.5L18.5 9H13Z" />
-                            </svg>
-                            Lire la thèse
-                        </a>
-                        <a href="#infos" class="text-sm/6 font-semibold text-gray-900">En savoir plus <span
-                                aria-hidden="true">→</span></a>
-                    </div>
-                </div>
-                <!-- Conteneur iframe -->
-                <div class="stream-container relative aspect-video" id="streamContainer">
-                    <button
-                        class="fullscreen-button absolute top-2 right-2 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition duration-200 flex items-center z-10"
-                        id="fullscreenButton">
-                        <svg viewBox="0 0 24 24" class="w-5 h-5 mr-1" fill="currentColor">
-                            <path d="M5 14h3v3h2v-5H5v2zm3-6H5v2h5V5H8v3zm6 9h2v-3h3v-2h-5v5zm4-9h-3v-3h-2v5h5z" />
-                        </svg>
-                        <span id="fullscreenText">Plein écran</span>
-                    </button>
-                    <iframe id="streamIframe" class="w-full h-72 md:h-96 rounded-lg shadow-lg" title="PhD Defense Live Stream"
-                        allow="autoplay; microphone; camera" allowfullscreen src="">
-                    </iframe>
-                </div>
-                <div class="relative rounded-full px-3 py-1 text-sm/6 text-primary ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                    Jeudi 19 Décembre 2024 - 13h30 - Amphithéâtre E2 - CY Cergy Paris Université, site de Saint-Martin
-                </div>
-                <p>
+<!--SVG spirograph generated from https://nbremer.github.io/spirograph/-->
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    </head>
+    <body>
+      <script src="script.js"></script>  
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+                    <!-- The images used were downloaded from: http://www.videogamesprites.net/SuperMarioBros1/ -->
+                    <div style="height:300px;">
+                    <div class="sky">
+	                    <div class="scorebar">
+                <style>
+                    .topline-mario{position:absolute; top: 15px}
+                    .topline-portfolio{position:absolute; top: 120px; left:50%}
+                    .topline-accueil{position:absolute; top: 170px; left:30%}
+                    .topline-projets{position:absolute; top: 170px; left:42%}
+                    .topline-ens{position:absolute; top: 170px; left:54%}
+                    .topline-contact{position:absolute; top: 170px; left:74%}
+                    .topline-world{position:absolute; left:55%; top: 15px}
+                    .topline-time{position:absolute; left: 85%;top: 15px}
+                    .bottomline-score{position:absolute; top: 50px;}
+                    .bottomline-coin{position:absolute; top: 30px; left:30%;}
+                    .bottomline-world{position:absolute; top: 50px; left:55%;}
+                    .bottomline-time{position:absolute; top: 50px; left:86.5%;}
+                </style>
+                <p><span class="topline-mario" >MARIO</span>
+                    <span class="topline-world">WORLD</span>
+                    <span class="topline-time">TIME</span>
+                    <span class="bottomline-score" id="valeur-score">OOOOOO</span>
+                    <span class="bottomline-coin"><img src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/Coin.gif" height="30px"> x <span  id="valeur-coin">00</span></span>
+                    <span class="bottomline-world">1 - 1</span>
+                    <span class="bottomline-time" id="valeur-time">111</span>
+                    <span class="topline-portfolio">Mon Portfolio</span>
+                    <span class="topline-accueil"><a href="#accueil">Accueil</a></span>
+                    <span class="topline-projets"><a href="projets.html">Projets</a></span>
+                    <span class="topline-ens"><a href="enseignement.html">Enseignements</a></span>
+                    <span class="topline-contact"><a href="#contact">Contact</a></span>
+                    
                 </p>
             </div>
+
+            <img class="cloud" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/CloudSingle.gif">
+            <img class="cloud" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/CloudDouble.gif">
+            <img class="cloud" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/CloudTriple.gif">
         </div>
-    </section>
-
-    <!-- Additional sections can be updated similarly -->
-
-    <footer class="footer py-6 border-t border-gray-300">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div class="text-center text-sm text-gray-600">
-                <p class="text-gray-600">&copy; 2024 Mehdi ABDELWAHED</p>
+        <div class="ground">
+            <div class="skyblocks">
+                <img class="brick" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/Bricks.gif" height="40px;">
+                <img class="brick" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/QuestionBlock.gif" height="40px;">
+                <img class="brick" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/Bricks.gif" height="40px;">
+                <img class="brick" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/Bricks.gif" height="40px;">
             </div>
-        </div>
-    </footer>
-</body>
+
+            <img class="bush" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/BushSingle.gif" height="50px;">
+            <img class="bush" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/BushDouble.gif" height="50px;">
+            <img class="bush" src="https://raw.githubusercontent.com/LantareCode/random-this-and-thats/master/CSS/SuperMario-Animation/images/BushSingle.gif" height="50px;">
+
+            <div class="mario" id="mario_mage"></div>
+            </div>
+            </div>
+            <div classs="container">
+                <div class="row">
+                    <div class="col-2">
+                        <header class="header">
+                            <h1 class="title">Mon Portfolio</h1>
+                            <nav class="navigation">
+                              <ul class="menu">
+                                <li><a href="#accueil">Accueil</a></li>
+                                <li><a href="#projets">Projets</a></li>
+                                <li><a href="#a-propos">À propos</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                              </ul>
+                            </nav>
+                          </header>
+                    </div>
+                    <div class="col-10">
+                        <header class="header">
+                            <h1 class="title">Mon Portfolio</h1>
+                            <nav class="navigation">
+                              <ul class="menu">
+                                <li><a href="#accueil">Accueil</a></li>
+                                <li><a href="#projets">Projets</a></li>
+                                <li><a href="#a-propos">À propos</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                              </ul>
+                            </nav>
+                          </header>
+                    </div>
+                  </div>
+            </div>
+    </body>
 
 </html>
-
-<script>
-    const fullscreenButton = document.getElementById('fullscreenButton');
-    const streamContainer = document.getElementById('streamContainer');
-
-    fullscreenButton.addEventListener('click', async () => {
-        try {
-            if (!document.fullscreenElement) {
-                // Enter fullscreen on the container instead of the iframe
-                await streamContainer.requestFullscreen();
-            } else {
-                await document.exitFullscreen();
-            }
-        } catch (err) {
-            console.error('Error attempting to toggle fullscreen:', err);
-        }
-    });
-
-    // Update button text based on fullscreen state
-    document.addEventListener('fullscreenchange', () => {
-        const isFullscreen = document.fullscreenElement;
-        const buttonText = isFullscreen ? 'Quitter' : 'Plein écran';
-        fullscreenButton.querySelector('#fullscreenText').textContent = buttonText;
-    });
-
-    const streamIframe = document.getElementById('streamIframe');
-    const iframe = document.getElementById('streamIframe');
-    const loadingOverlay = document.getElementById('loadingOverlay');
-
-    // Événement lorsqu'un iframe est chargé
-    iframe.addEventListener('load', () => {
-        // Masque le conteneur de chargement
-        loadingOverlay.style.display = 'none';
-    });
-
-    // Exemple : Charger l'iframe après une interaction utilisateur ou un événement
-    const playOverlay = document.getElementById('playOverlay');
-    const playOverlay2 = document.getElementById('playOverlay2');
-    playOverlay.addEventListener('click', () => {
-        iframe.src = src = "https://teams.microsoft.com/convene/townhall?eventId=2cfe4175-0940-4801-ba98-8d5c7875b260@b8c19512-2aed-471d-a8d1-9b06e7da786a&sessionId=c2e8eaa2-af56-41a0-8e5b-ea2765a06c6c";
-        playOverlay.classList.add('hidden');
-        playOverlay2.classList.add('hidden')
-    });
-
-    playOverlay2.addEventListener('click', () => {
-        // Set the src only after user interaction
-        streamIframe.src = "https://teams.microsoft.com/convene/townhall?eventId=2cfe4175-0940-4801-ba98-8d5c7875b260@b8c19512-2aed-471d-a8d1-9b06e7da786a&sessionId=c2e8eaa2-af56-41a0-8e5b-ea2765a06c6c";
-        playOverlay.classList.add('hidden');
-        playOverlay2.classList.add('hidden')
-    });
-</script>
