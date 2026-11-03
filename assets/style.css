@@ -234,7 +234,6 @@ body.has-rail { padding-left: 0 }
 
 h1 {
   position: relative;
-  text-shadow: 3px 3px 0 var(--bg), 4px 4px 0 var(--violet), 8px 8px 0 var(--bg), 9px 9px 0 var(--accent);
 }
 h1::before, h1::after {
   position: absolute;
@@ -265,7 +264,6 @@ h1::after { color: var(--blue); animation: glitch-b 3.1s steps(1) infinite }
 h2 {
   border-top: 0;
   padding-top: 0;
-  text-shadow: 2px 2px 0 var(--bg), 3px 3px 0 var(--pink), 5px 5px 0 var(--bg), 6px 6px 0 var(--blue);
 }
 h2::before {
   display: block;
