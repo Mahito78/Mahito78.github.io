@@ -59,6 +59,7 @@ function draw(){
  x.fillStyle='#8ed8d2';x.beginPath();x.moveTo(carX-17,carY+10);x.lineTo(carX-10,carY+3);x.lineTo(carX+10,carY+3);x.lineTo(carX+20,carY+11);x.closePath();x.fill();
  x.fillStyle='#d7ff3f';x.fillRect(carX-24,carY+23,9,3);x.fillRect(carX+16,carY+23,9,3);
  x.fillStyle='#eef4e8';x.font='700 11px monospace';x.fillText(Math.round(speed*8)+' KM/H',14,H-16);
+ window.brutalFx&&brutalFx(x,W,H);
 }
 function quad(x1,y1,w1,x2,y2,w2,c){x.fillStyle=c;x.beginPath();x.moveTo(x1-w1/2,y1);x.lineTo(x2-w2/2,y2);x.lineTo(x2+w2/2,y2);x.lineTo(x1+w1/2,y1);x.fill()}
 function loop(){step();draw();requestAnimationFrame(loop)}

@@ -110,10 +110,10 @@ p { margin-top: 0 }
   position: absolute;
   top: 0;
   right: 0;
-  width: 42px;
-  height: 42px;
-  border-top: 1px solid var(--line);
-  border-right: 1px solid var(--line);
+  width: 64px;
+  height: 14px;
+  background: repeating-linear-gradient(135deg, var(--accent) 0 3px, transparent 3px 7px);
+  opacity: .55;
   content: "";
 }
 .card:hover {
@@ -227,6 +227,144 @@ footer.site {
   text-transform: uppercase;
 }
 
+/* ---- brutalist layer: palette, patterns, glitch, echo type ---- */
+:root { --lav: #b6a8d8; --pink: #ff4fd8; --violet: #6b3cff; --amber: #f3a712 }
+::selection { background: var(--pink); color: #000 }
+body.has-rail { padding-left: 0 }
+
+h1 {
+  position: relative;
+}
+h1::before, h1::after {
+  position: absolute;
+  inset: 0;
+  white-space: pre-line;
+  text-shadow: none;
+  pointer-events: none;
+  content: attr(data-text);
+  content: attr(data-text) / "";
+  clip-path: inset(0 0 100% 0);
+}
+h1::before { color: var(--pink); animation: glitch-a 4.2s steps(1) infinite }
+h1::after { color: var(--blue); animation: glitch-b 3.1s steps(1) infinite }
+@keyframes glitch-a {
+  0%, 89%, 100% { clip-path: inset(0 0 100% 0); transform: none }
+  90% { clip-path: inset(8% 0 62% 0); transform: translate(-7px, 1px) }
+  92% { clip-path: inset(52% 0 18% 0); transform: translate(6px, -1px) }
+  94% { clip-path: inset(78% 0 4% 0); transform: translate(-4px, 0) }
+  96% { clip-path: inset(28% 0 46% 0); transform: translate(8px, 0) }
+}
+@keyframes glitch-b {
+  0%, 84%, 100% { clip-path: inset(0 0 100% 0); transform: none }
+  85% { clip-path: inset(60% 0 12% 0); transform: translate(6px, 0) }
+  88% { clip-path: inset(14% 0 70% 0); transform: translate(-6px, 1px) }
+  91% { clip-path: inset(38% 0 36% 0); transform: translate(4px, -1px) }
+}
+
+h2 {
+  border-top: 0;
+  padding-top: 0;
+}
+h2::before {
+  display: block;
+  height: 10px;
+  margin-bottom: 16px;
+  background:
+    linear-gradient(90deg, var(--accent) 0 72px, transparent 72px),
+    repeating-linear-gradient(135deg, var(--line) 0 3px, transparent 3px 7px);
+  content: "";
+}
+.card h3 { transition: text-shadow .15s steps(2) }
+.card:hover h3 { text-shadow: -3px 0 var(--pink), 3px 0 var(--blue) }
+.card:hover { animation: jitter .22s steps(2) 1 }
+@keyframes jitter {
+  25% { transform: translate(-3px, -3px) }
+  50% { transform: translate(3px, -4px) }
+  75% { transform: translate(-1px, -3px) }
+}
+.grid .card:nth-child(3n+2) { border-left-color: var(--pink) }
+.grid .card:nth-child(3n+3) { border-left-color: var(--lav) }
+.list li { transition: background .1s steps(2), color .1s steps(2) }
+.list li:hover { background: var(--accent); color: var(--bg) }
+.list li:hover span { color: var(--bg) }
+.avatar { position: relative; overflow: hidden }
+.avatar::after {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(var(--bg) 1.2px, transparent 1.6px) 0 0 / 7px 7px;
+  opacity: .4;
+  mix-blend-mode: multiply;
+  content: "";
+}
+
+.ticker {
+  overflow: hidden;
+  border-bottom: 2px solid var(--bg);
+  background: var(--accent);
+  color: var(--bg);
+  font: 700 .72rem/1 var(--mono);
+  letter-spacing: .16em;
+  white-space: nowrap;
+}
+.ticker div { display: inline-block; padding: 7px 0; animation: tick 40s linear infinite }
+.ticker b { margin: 0 .9em; color: var(--signal) }
+@keyframes tick { to { transform: translateX(-50%) } }
+
+.rail { display: none }
+@media (min-width: 900px) {
+  body.has-rail { padding-left: 46px }
+  .rail {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 11;
+    width: 46px;
+    padding: 12px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-right: 2px solid var(--bg);
+    background: var(--accent);
+    color: var(--bg);
+  }
+  .rail span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font: 800 1.2rem/1 var(--display);
+    white-space: nowrap;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .rail span.out { color: transparent; -webkit-text-stroke: 1px var(--bg) }
+  .rail i {
+    display: block;
+    width: 30px;
+    height: 56px;
+    background: radial-gradient(var(--bg) 1.6px, transparent 2px) 0 0 / 8px 8px;
+  }
+  .rail i.chk {
+    height: 30px;
+    background: conic-gradient(var(--bg) 25%, var(--accent) 0 50%, var(--bg) 0 75%, var(--accent) 0) 0 0 / 15px 15px;
+  }
+}
+
+main { position: relative }
+.deco { position: absolute; top: 28px; right: 24px; width: 280px; height: 160px; pointer-events: none; z-index: 0 }
+.deco i, .deco b { position: absolute; display: block }
+.deco .d-dots { top: 0; right: 0; width: 150px; height: 92px; opacity: .55; background: radial-gradient(var(--accent) 1.5px, transparent 1.9px) 0 0 / 9px 9px }
+.deco .d-stripes { top: 0; right: 162px; width: 64px; height: 92px; opacity: .6; background: repeating-linear-gradient(135deg, var(--lav) 0 5px, transparent 5px 11px) }
+.deco .d-check { top: 102px; right: 0; width: 112px; height: 24px; background: conic-gradient(var(--signal) 25%, var(--bg) 0 50%, var(--signal) 0 75%, var(--bg) 0) 0 0 / 16px 16px }
+.deco b { top: 134px; right: 0; padding: 2px 6px; background: var(--signal); color: #000; font: 700 .62rem/1.3 var(--mono); letter-spacing: .1em }
+main > *:not(.deco) { position: relative; z-index: 1 }
+
+.gwrap canvas { animation: canvas-glitch 6s steps(1) infinite }
+@keyframes canvas-glitch {
+  0%, 93%, 100% { transform: none; filter: none }
+  94% { transform: translateX(-5px); filter: hue-rotate(50deg) saturate(1.6) }
+  96% { transform: translateX(6px); filter: hue-rotate(-40deg) }
+}
+
+@media (max-width: 900px) { .deco { display: none } }
 @media (max-width: 700px) {
   header.site .in { align-items: flex-start; flex-direction: column; padding: 12px 18px }
   nav { gap: 2px }
@@ -242,5 +380,5 @@ footer.site {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important }
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation: none !important }
 }

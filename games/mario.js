@@ -100,6 +100,7 @@ function draw(){
  x.fillStyle='#eef4e8';x.font='600 13px monospace';x.fillText('FIELD '+String(L+1).padStart(2,'0')+'  /  '+LEVELS[L].title.toUpperCase(),12,17);
  x.fillStyle='#a2b1a4';x.font='11px monospace';x.fillText(msg,12,31);
  x.textAlign='right';x.fillStyle='#8ed8d2';x.fillText('TOPICS '+got.length+'  //  '+Math.floor(p.x/T)+'M',628,23);x.textAlign='left';
+ window.brutalFx&&brutalFx(x,640,400);
 }
 function loop(){step();draw();requestAnimationFrame(loop)}
 addEventListener('keydown',e=>{keys[e.key]=1;if(' ArrowUp ArrowDown'.includes(e.key))e.preventDefault()});addEventListener('keyup',e=>keys[e.key]=0);
