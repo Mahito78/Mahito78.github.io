@@ -79,6 +79,7 @@ function draw(){
  x.textAlign='left';x.textBaseline='alphabetic';x.fillStyle='#d7ff3f';x.fillRect(14,oy+D.h*s+14,22,2);
  x.fillStyle='#eef4e8';x.font='600 11px monospace';x.fillText(msg.toUpperCase(),44,oy+D.h*s+19);
  x.fillStyle='#a2b1a4';x.textAlign='right';x.fillText('Z / UNDO   R / RESET',626,oy+D.h*s+19);x.textAlign='left';
+ window.brutalFx&&brutalFx(x,640,400);
 }
 addEventListener('keydown',e=>{const m={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0],w:[0,-1],s:[0,1],a:[-1,0],d:[1,0]}[e.key];
  if(m){move(...m);e.preventDefault()}
